@@ -119,7 +119,6 @@ public class Main {
 
     private static void showCheckedOut() {
         char choice = '0';
-        int id;
 
         System.out.println("----------------------------------------");
         System.out.println("All Checked Out Books: ");
@@ -139,17 +138,7 @@ public class Main {
             System.out.print("Your choice: ");
             choice = userInput.nextLine().toUpperCase().charAt(0);
             if(choice == 'C') {
-                System.out.println("----------------------------------------");
-                System.out.println("----------------------------------------");
-                System.out.println("Which book would you like to check in? (choose by ID) ");
-                id = Integer.parseInt(userInput.nextLine().strip());
-                for(Book book : books) {
-                    if(book.getId() == id) {
-                        book.checkIn();
-                        System.out.println("Done!");
-                        break;
-                    }
-                }
+                checkInBook();
             } else if (choice == 'X') {
                 break;
             }
@@ -160,6 +149,27 @@ public class Main {
         }
     }
 
+    private static void checkInBook() {
+        int choice = -1;
+        while(choice != 0) {
+            System.out.println("----------------------------------------");
+            System.out.println("Please select an option: ");
+            System.out.println("\t[Enter ID Number of Checked Out Book to Return]");
+            System.out.println("\t[0] Return to Main Menu");
+            System.out.println("----------------------------------------");
+            System.out.print("Your choice: ");
+            choice = Integer.parseInt(userInput.nextLine().strip());
+            if(choice == 0) getHomeScreenSelection();
+            for(Book book : books) {
+                if(book.getId() == choice) {
+                    book.checkIn();
+                    System.out.println("Done!");
+                    break;
+                }
+            }
+
+        }
+    }
 
 
 }
