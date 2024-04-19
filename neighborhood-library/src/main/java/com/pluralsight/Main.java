@@ -151,23 +151,23 @@ public class Main {
 
     private static void checkInBook() {
         int choice = -1;
-        while(choice != 0) {
-            System.out.println("----------------------------------------");
-            System.out.println("Please select an option: ");
-            System.out.println("\t[Enter ID Number of Checked Out Book to Return]");
-            System.out.println("\t[0] Return to Main Menu");
-            System.out.println("----------------------------------------");
-            System.out.print("Your choice: ");
-            choice = Integer.parseInt(userInput.nextLine().strip());
-            if(choice == 0) getHomeScreenSelection();
-            for(Book book : books) {
-                if(book.getId() == choice) {
-                    book.checkIn();
-                    System.out.println("Done!");
-                    break;
-                }
-            }
 
+        System.out.println("----------------------------------------");
+        System.out.println("Please select an option: ");
+        System.out.println("\t[Enter ID Number of Checked Out Book to Return]");
+        System.out.println("\t[0] Return to Main Menu");
+        System.out.println("----------------------------------------");
+        System.out.print("Your choice: ");
+        choice = Integer.parseInt(userInput.nextLine().strip());
+
+        if(choice == 0) getHomeScreenSelection();
+
+        for(Book book : books) {
+            if(book.getId() == choice) {
+                book.checkIn();
+                System.out.println("Done!");
+                break;
+            }
         }
     }
 
