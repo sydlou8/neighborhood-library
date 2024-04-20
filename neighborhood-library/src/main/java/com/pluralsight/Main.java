@@ -58,7 +58,7 @@ public class Main {
                     System.out.println("----------------------------------------");
                     System.out.println("Thank you. Goodbye!");
                     System.out.println("----------------------------------------");
-                    return;
+                    break;
                 default:
                     // invalid input
                     System.out.println("Invalid Selection. Please enter proper choice: ");
@@ -90,29 +90,29 @@ public class Main {
             System.out.println("----------------------------------------");
             System.out.print("Your choice: ");
             choice = Integer.parseInt(userInput.nextLine().strip());
-            if(choice == 1) {
-                System.out.println("----------------------------------------");
-                System.out.print("Please Enter First Name: ");
-                firstName = userInput.nextLine().strip();
-                System.out.print("Please Enter Last Name: ");
-                lastName = userInput.nextLine().strip();
-                user = new User (firstName, lastName);
-                System.out.println("----------------------------------------");
-                System.out.println("Which book would you like to check out? (choose by ID) ");
-                id = Integer.parseInt(userInput.nextLine().strip());
-                for(Book book : books) {
-                    if(book.getId() == id) {
-                        book.checkOut(user.getFullName());
-                        System.out.println("Done!");
-                        break;
+            switch (choice){
+                case 1:
+                    System.out.println("----------------------------------------");
+                    System.out.print("Please Enter First Name: ");
+                    firstName = userInput.nextLine().strip();
+                    System.out.print("Please Enter Last Name: ");
+                    lastName = userInput.nextLine().strip();
+                    user = new User(firstName, lastName);
+                    System.out.println("----------------------------------------");
+                    System.out.println("Which book would you like to check out? (choose by ID) ");
+                    id = Integer.parseInt(userInput.nextLine().strip());
+                    for (Book book : books) {
+                        if (book.getId() == id) {
+                            book.checkOut(user.getFullName());
+                            System.out.println("Done!");
+                            break;
+                        }
                     }
-                }
-            } else if (choice == 2) {
-                continue;
-            }
-            else {
-                System.out.println("Invalid Selection. Please enter proper choice: ");
-                continue;
+                case 2:
+                    break;
+                default:
+                    System.out.println("Invalid Selection. Please enter proper choice: ");
+                    break;
             }
         }
     }
@@ -137,14 +137,15 @@ public class Main {
             System.out.println("----------------------------------------");
             System.out.print("Your choice: ");
             choice = userInput.nextLine().toUpperCase().charAt(0);
-            if(choice == 'C') {
-                checkInBook();
-            } else if (choice == 'X') {
-                break;
-            }
-            else {
-                System.out.println("Invalid Selection. Please enter proper choice: ");
-                break;
+            switch(choice){
+                case 'C':
+                    checkInBook();
+                    break;
+                case 'X':
+                    break;
+                default:
+                    System.out.println("Invalid Selection. Please enter proper choice: ");
+                    break;
             }
         }
     }
